@@ -44,7 +44,7 @@ pipeline {
                     def localWarPath = 'target/addressbook.war'
 
                     // Deploy the WAR file using curl to the Tomcat Manager
-                    sh "curl -v -u ${admin}:${admin} --upload-file ${/var/lib/} ${http://3.88.230.102:9090/manager/text}/deploy?path=/Deepak&update=true"
+                    sh "curl -v -u ${admin}:${admin} --upload-file ${target/addressbook.war} ${http://3.88.230.102:9090/manager/text}/deploy?path=/Deepak&update=true"
 
                     // Replace 'your-java-web-app' with the context path of your web application.
                     // The context path is the part of the URL after the hostname and port (e.g., http://your-tomcat-host:8080/your-java-web-app)
