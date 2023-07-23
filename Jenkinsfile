@@ -18,7 +18,6 @@ pipeline {
                 }
          }
         }
-      }
          stage('Deploy to a tomcat') {
            steps {
               deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '',
