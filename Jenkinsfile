@@ -1,29 +1,32 @@
-pipeline {    
-   agent {
-   label 'slave'
-}   
+pipeline {
+    agent any
+    tools {
+     maven 'Maven'
+    }
     stages {
-           stage('SCM Checkout') {
-             steps {
-                git 'https://github.com/mkrish1825/devops.git'
-             }
-           }
-         stage('maven-buildstage') {
-           steps {                
-             script {  
-                def mvnHome = tool name: 'Maven'
-                env.M2_HOME = mvnHome
-                env.PATH = "${mvnHome}/bin:${env.PATH}"
-                sh "mvn clean package && mv target/addressbook*.war target/new.war"
-                }
-         }
+        stage('Build') {
+            steps {
+                // Your build steps here
+                sh 'mvn clean package'
+            }
         }
-         stage('Deploy to a tomcat') {
-           steps {
-              deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '',
-              url: 'http://54.152.184.74:9090/')],
-              contextPath: 'new', war: '*/.war'
-          }
-        } 
-      }
+        stage('Test') {
+            steps {
+                // Your test steps here
+                sh 'mvn test'
+            }
+        }
+
+        post {
+            success {
+                // Archive the WAR file as an artifact
+                archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+            }
+        }
+
+        stage('Deploy to container')
+            steps {
+                deploy adapters: [tomcat9(credentialsId: 'deepak', path: '', url: 'http://18.206.223.79:9090/')], contextPath: 'deepak', war: '**/*.war'
+            }
+ }
 }
