@@ -33,10 +33,10 @@ pipeline {
                     def tomcatPassword = 'admin'
 
                     // Local WAR file path (relative to your workspace)
-                    def localWarPath = '**/target/*.war'
+                    def localWarPath = '/target/.war'
 
                     // Deploy the WAR file using curl to the Tomcat Manager
-                    sh "curl -v -u ${admin}:${admin} --upload-file ${**/target/*.war} ${http://44.204.65.54:9090/manager/text}/deploy?path=/Deepak&update=true"
+                    sh "curl -v -u ${admin}:${admin} --upload-file ${/target/.war} ${http://44.204.65.54:9090/manager/text}/deploy?path=/Deepak&update=true"
 
                     // Replace 'your-java-web-app' with the context path of your web application.
                     // The context path is the part of the URL after the hostname and port (e.g., http://your-tomcat-host:8080/your-java-web-app)
