@@ -21,10 +21,11 @@ pipeline {
                 archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
             }
         }
-
-        stage('Deploy to container')
+    }
+        stage('Deploy to container') {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'deepak', path: '', url: 'http://18.206.223.79:9090/')], contextPath: 'deepak', war: '**/*.war'
             }
- }
+    }
+  }
 }
