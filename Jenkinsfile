@@ -1,13 +1,5 @@
 pipeline {
     agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // This step checks out the source code from your GitHub repository
-                git branch: 'master', url: 'https://github.com/DeepakRamanan1997/GJDeployment.git'
-            }
-        }
         stage('Compile') {
             steps {
                 // Compile the Java project using Maven
