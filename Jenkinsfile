@@ -11,7 +11,7 @@ pipeline {
          stage('maven-buildstage') {
            steps {                
              script {  
-                def mvnHome = tool name: 'maven3'
+                def mvnHome = tool name: 'Maven'
                 env.M2_HOME = mvnHome
                 env.PATH = "${mvnHome}/bin:${env.PATH}"
                 sh "mvn clean package && mv target/addressbook*.war target/new.war"
@@ -22,7 +22,7 @@ pipeline {
          stage('Deploy to a tomcat') {
            steps {
               deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '',
-              url: 'http://15.206.123.45:8085/')],
+              url: 'http://54.152.184.74:9090/')],
               contextPath: 'new', war: '*/.war'
           }
         } 
