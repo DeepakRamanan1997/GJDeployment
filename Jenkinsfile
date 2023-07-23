@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Your build steps here
-                sh 'mvn clean package'
+                sh 'mvn package'
             }
     }
         stage('Deploy to container') {
