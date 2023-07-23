@@ -9,12 +9,6 @@ pipeline {
                 // Your build steps here
                 sh 'mvn clean package'
             }
-        }
-        stage('Test') {
-            steps {
-                // Your test steps here
-                sh 'mvn test'
-            }
         post {
             success {
                 // Archive the WAR file as an artifact
