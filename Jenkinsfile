@@ -11,7 +11,7 @@ pipeline {
         stage('Compile') {
             steps {
                 // Compile the Java project using Maven
-                sh 'mvn clean compile'
+                sh 'mvn compile'
             }
         }
         stage('Test') {
@@ -34,7 +34,7 @@ pipeline {
 
                 script {
                     // Remote Tomcat Manager URL
-                    def tomcatManagerUrl = 'http://3.95.7.189:9090/manager/text'
+                    def tomcatManagerUrl = 'http://44.204.65.54:9090/manager/text'
 
                     // Remote Tomcat Manager credentials
                     def tomcatUsername = 'admin'
@@ -44,14 +44,14 @@ pipeline {
                     def localWarPath = 'target/addressbook.war'
 
                     // Deploy the WAR file using curl to the Tomcat Manager
-                    sh "curl -v -u ${admin}:${admin} --upload-file ${target/addressbook.war} ${http://3.88.230.102:9090/manager/text}/deploy?path=/Deepak&update=true"
+                    sh "curl -v -u ${admin}:${admin} --upload-file ${target/addressbook.war} ${http://44.204.65.54:9090/manager/text}/deploy?path=/Deepak&update=true"
 
                     // Replace 'your-java-web-app' with the context path of your web application.
                     // The context path is the part of the URL after the hostname and port (e.g., http://your-tomcat-host:8080/your-java-web-app)
 
                     // Optional: Restart the Tomcat server
                     // Uncomment the following line if you want to restart the Tomcat server after deployment.
-                    sh "curl -v -u ${admin}:${admin} ${http://3.88.230.102:9090/manager/text}/reload?path=/Deepak"
+                    sh "curl -v -u ${admin}:${admin} ${http://44.204.65.54:9090/manager/text}/reload?path=/Deepak"
                 }
             }
         }
