@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    }
     stages {
         stage('Build') {
             steps {
@@ -12,6 +11,6 @@ pipeline {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'deepak', path: '', url: 'http://3.86.157.49:9090/')], contextPath: 'deepak', war: '**/*.war'
             }
+       } 
     }
-  }
 }
